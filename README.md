@@ -23,6 +23,9 @@ slicing and bush sound effect: https://pixabay.com/sound-effects/search/slice/
 
 ## Instructions
 
+first recenter the game. used different sound for each laser. sound will play on entering the cube. and the cube will destroy on exiting the cube. behind the player the cube will auto destruct. 
+i have found the sometimes the lasers to lag and the sound needs time to play. try slow slicing of the cubes.
+
 ### Right Controller:
 
 Primary click -> recenter + starts plays music
