@@ -1,12 +1,11 @@
 extends XROrigin3D  # Ensure it's extending Node3D if you're working with 3D nodes in VR
 var xr_interface: XRInterface
-var current_rotation
-var offset_position
+
 
 @onready var right_laser: XRController3D = $RightLaser
 @onready var left_laser: XRController3D = $LeftLaser
 
-@onready var area_3d: Area3D = $Area3D
+
 
 @onready var song: AudioStreamPlayer = $"../song"
 
