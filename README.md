@@ -18,6 +18,21 @@ youtube: lots of yt videos : https://www.youtube.com/playlist?list=PL6QlsNoy4VFT
 song: https://www.youtube.com/watch?v=QW_2CS0cc6I&list=PL6QlsNoy4VFTtTNeDkdX8wcFxua4mJa71&index=49&ab_channel=Infraction-NoCopyrightMusic
 slicing and bush sound effect: https://pixabay.com/sound-effects/search/slice/
 
+## Instructions
+
+# Right Controller:
+Primary click -> recenter + starts plays music
+B -> hides laser
+A -> makes laser visible
+
+# Left Controller:
+Y -> hides laser
+X -> makes laser visible
+
+
+
+
+
 ## Getting Started
 
 Clone the assignment using GitHub Classroom. Links to some resources will be available on the Canvas assignment page.
