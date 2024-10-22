@@ -21,8 +21,11 @@ slicing and bush sound effect: https://pixabay.com/sound-effects/search/slice/
 ## Instructions
 
 ### Right Controller:
+
 Primary click -> recenter + starts plays music
+
 B -> hides laser
+
 A -> makes laser visible
 
 ### Left Controller:
