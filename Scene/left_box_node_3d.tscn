@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://diso2vxkh1yiv"]
+
+[ext_resource type="PackedScene" uid="uid://o5fop8g48erc" path="res://Scene/left_box.tscn" id="1_cmqrl"]
+
+[node name="left_box_node3d" type="Node3D"]
+
+[node name="left_box" parent="." instance=ExtResource("1_cmqrl")]

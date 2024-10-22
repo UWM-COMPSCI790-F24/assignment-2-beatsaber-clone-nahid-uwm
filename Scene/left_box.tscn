@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://o5fop8g48erc"]
+
+[ext_resource type="Script" path="res://Scripts/left_box.gd" id="1_54hg0"]
+[ext_resource type="AudioStream" uid="uid://dm2mnk8e4cevo" path="res://Sounds/slice.mp3" id="2_rf84u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_841uy"]
+albedo_color = Color(5.77569e-07, 0.665746, 0.99, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f4lwt"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="left_box" type="CSGBox3D"]
+size = Vector3(0.5, 0.5, 0.5)
+material = SubResource("StandardMaterial3D_841uy")
+
+[node name="Area3D" type="Area3D" parent="."]
+visibility_parent = NodePath("..")
+script = ExtResource("1_54hg0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_f4lwt")
+
+[node name="sfx_slice" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rf84u")
+
+[connection signal="area_entered" from="Area3D" to="Area3D" method="left_box_on_area_entered"]
+[connection signal="area_exited" from="Area3D" to="Area3D" method="left_box_on_area_exited"]

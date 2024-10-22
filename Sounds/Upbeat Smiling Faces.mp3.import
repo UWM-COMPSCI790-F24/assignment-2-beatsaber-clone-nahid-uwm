@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d1wlvffabaua4"
+path="res://.godot/imported/Upbeat Smiling Faces.mp3-fc3598d9ecd63898016d1ec105e0768e.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Upbeat Smiling Faces.mp3"
+dest_files=["res://.godot/imported/Upbeat Smiling Faces.mp3-fc3598d9ecd63898016d1ec105e0768e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

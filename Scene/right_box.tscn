@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmubl8on37kqc"]
+
+[ext_resource type="Script" path="res://Scripts/right_box.gd" id="1_mbyn2"]
+[ext_resource type="AudioStream" uid="uid://dm2mnk8e4cevo" path="res://Sounds/slice.mp3" id="2_h77wk"]
+[ext_resource type="AudioStream" uid="uid://nlmjue6dmiqo" path="res://Sounds/bush.mp3" id="3_82jor"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_841uy"]
+albedo_color = Color(0.900585, 0.520044, 9.62615e-07, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f4lwt"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="right_box" type="CSGBox3D"]
+size = Vector3(0.5, 0.5, 0.5)
+material = SubResource("StandardMaterial3D_841uy")
+
+[node name="Area3D" type="Area3D" parent="."]
+visibility_parent = NodePath("..")
+script = ExtResource("1_mbyn2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_f4lwt")
+
+[node name="sfx_slice" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_h77wk")
+volume_db = -20.0
+
+[node name="sfx_bush" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_82jor")
+volume_db = 1.0
+
+[connection signal="area_entered" from="Area3D" to="Area3D" method="right_box__on_area_entered"]
+[connection signal="area_exited" from="Area3D" to="Area3D" method="right_box_on_area_exited"]

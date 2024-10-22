@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://b5umx8on4fwtn"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_4xhd0"]
+[ext_resource type="PackedScene" uid="uid://d4egr8whooccn" path="res://Scene/Laser.tscn" id="2_56f21"]
+[ext_resource type="Script" path="res://Scripts/both_spawner.gd" id="2_chefv"]
+[ext_resource type="Script" path="res://Scripts/reset_view.gd" id="8_7eam4"]
+[ext_resource type="AudioStream" uid="uid://d1wlvffabaua4" path="res://Sounds/Upbeat Smiling Faces.mp3" id="8_xbf37"]
+[ext_resource type="PackedScene" uid="uid://4upj8nyyqj64" path="res://Scene/left_laser.tscn" id="9_qc0ey"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tu6go"]
+size = Vector3(10, 10, 0.1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qpsu7"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_2el7t"]
+sky_material = SubResource("ProceduralSkyMaterial_qpsu7")
+
+[sub_resource type="Environment" id="Environment_d5ibu"]
+background_mode = 2
+sky = SubResource("Sky_2el7t")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sw6i2"]
+albedo_color = Color(0.25098, 0.0784314, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vdjq0"]
+material = SubResource("StandardMaterial3D_sw6i2")
+size = Vector3(10, 0.05, 10)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_4xhd0")
+
+[node name="both_spawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2, -20)
+script = ExtResource("2_chefv")
+
+[node name="both_spawner2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2, -20)
+script = ExtResource("2_chefv")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+script = ExtResource("8_7eam4")
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="RightLaser" parent="XROrigin3D" instance=ExtResource("2_56f21")]
+tracker = &"right_hand"
+
+[node name="LeftLaser" parent="XROrigin3D" instance=ExtResource("9_qc0ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+tracker = &"left_hand"
+
+[node name="Area3D_v2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D_v2"]
+shape = SubResource("BoxShape3D_tu6go")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_d5ibu")
+
+[node name="FLOOR" type="MeshInstance3D" parent="WorldEnvironment"]
+mesh = SubResource("BoxMesh_vdjq0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_xbf37")
+volume_db = -10.0
+
+[connection signal="button_pressed" from="XROrigin3D/RightLaser" to="XROrigin3D" method="_on_right_laser_button_pressed"]
+[connection signal="button_pressed" from="XROrigin3D/LeftLaser" to="XROrigin3D" method="_on_left_laser_button_pressed"]

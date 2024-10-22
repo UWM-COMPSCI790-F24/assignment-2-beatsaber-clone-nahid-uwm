@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfgwt5gxa6lia"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rcfnn"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_a66bn"]
+sky_material = SubResource("ProceduralSkyMaterial_rcfnn")
+
+[sub_resource type="Environment" id="Environment_1ochv"]
+background_mode = 2
+sky = SubResource("Sky_a66bn")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjl2w"]
+albedo_color = Color(0.52549, 0.301961, 0.32549, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ht58m"]
+material = SubResource("StandardMaterial3D_xjl2w")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="GDScript" id="GDScript_y23rw"]
+script/source = "extends MeshInstance3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+func spawn():
+	var spawned_scene = load(\"res://Scene/sp.tscn\")
+	var spawned_scene_copy = spawned_scene.instance()
+	
+	spawned_scene_copy.translation.x = randi() % 10
+	
+	add_child(spawned_scene_copy)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	
+	pass
+	if Input.is_action_just_pressed(\"Key_E\"):
+		spawn()
+"
+
+[node name="Sp" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1ochv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="SpawnCube" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ht58m")
+script = SubResource("GDScript_y23rw")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.971413, 0.237398, 0, -0.237398, 0.971413, 0, 1.02768, 3.18602)
